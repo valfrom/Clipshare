@@ -31,7 +31,7 @@ static const NSInteger MaxVisibleChars = 32;
     NSPasteboard * pboard = [NSPasteboard generalPasteboard];
     [pboard clearContents];
     NSPasteboardItem * pboardItem = [[NSPasteboardItem alloc] init];
-    [pboardItem setString:self.texts[index] forType:NSPasteboardTypeString];
+    [pboardItem setString:[self.texts objectAtIndex:index] forType:NSPasteboardTypeString];
     [pboard writeObjects:@[pboardItem]];
 }
 
@@ -39,9 +39,9 @@ static const NSInteger MaxVisibleChars = 32;
 {
     for (int i = 0; i < self.menu.itemArray.count-2; i++)
     {
-        NSDate * time = self.times[i];
-        NSString * text = self.texts[i];
-        NSMenuItem * menuItem = self.menu.itemArray[i];
+        NSDate * time = [self.times objectAtIndex:i];
+        NSString * text = [self.texts objectAtIndex:i];
+        NSMenuItem * menuItem = [self.menu.itemArray objectAtIndex:i];
         
         NSString * timeStr = nil;
         NSTimeInterval secs = MAX(0,[[NSDate date] timeIntervalSinceDate:time]);
